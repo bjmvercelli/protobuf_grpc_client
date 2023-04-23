@@ -1,0 +1,16 @@
+{
+  "name": "node_protobuff_client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "generate-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./proto --grpc_out=grpc_js:./proto --plugin=protoc-gen-grpc=./node_modules/grpc-tools/bin/grpc_node_plugin --proto_path=./proto stock.proto"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.14",
+    "google-protobuf": "^3.21.2",
+    "grpc-tools": "^1.12.4",
+    "inquirer": "^8.0.0",
+    "protobufjs": "^7.2.3"
+  }
+}

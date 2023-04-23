@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+service StockService {
+    rpc StockMessage (StockRequest) returns (StockResponse);
+    rpc TotalPriceFunction (StockRequest) returns (FunctionResponse);
+    rpc TotalPriceFunctionClientStreaming (stream StockRequest) returns (FunctionResponse);
+    rpc TotalPriceFunctionServerStreaming (StockRequest) returns (stream FunctionResponse);
+    rpc TotalPriceFunctionBiDirectionalStreaming (stream StockRequest) returns (stream FunctionResponse);
+    rpc TotalPriceFile (FileRequest) returns (FileResponse);
+}
+
+enum SegmentType {
+    OTHER = 0;
+    MINING = 1;
+    BANKING = 2;
+    FOOD = 3;
+    AGRICULTURE = 4;
+    ENERGY = 5;
+}
+
+message Stock {
+    string name = 1;
+    double current_price = 2;
+    optional string description = 3;
+    optional SegmentType type = 4;
+    repeated double price_history = 5;
+}
+
+message StockRequest {
+    Stock stock = 1;
+    int32 quantity = 2;
+}
+
+message StockResponse {
+    string message = 1;
+}
+
+message FunctionResponse {
+    double total_price = 1;
+}
+
+message FileRequest {
+    StockRequest stock_item = 1;
+    string filename = 2;
+}
+
+message FileResponse {
+    string filename = 1;
+    bytes contents = 2;
+}
