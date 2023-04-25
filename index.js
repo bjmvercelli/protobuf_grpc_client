@@ -90,8 +90,6 @@ function TotalPriceFunctionServerStreaming(client) {
   call.on('error', function (err) {
     console.log(err);
   });
-  
-  call.end();
 }
 
 function TotalPriceFunctionBiDirectionalStreaming(client) {
@@ -156,7 +154,7 @@ function TotalPriceFile(client) {
 
 function main() {
 
-  const target = 'localhost:50051';
+  const target = '200.235.88.81:50051';
 
   inquirer.prompt(menu).then(answer => {
     const client = new grpcService.StockService(target, grpc.credentials.createInsecure());
